@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aviral Jain | Portfolio</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --purple-600: #9333ea;
+            --pink-400: #f472b6;
+            --pink-500: #ec4899;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --white: #fff;
+
+            --border-soft: rgba(168, 85, 247, 0.2);
+            --border-strong: rgba(168, 85, 247, 0.5);
+            --glass: rgba(15, 23, 42, 0.8);
+            --glass-card: rgba(30, 41, 59, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--white);
+            background:
+                radial-gradient(1200px 800px at 20% 0%, #3b0764 0%, transparent 60%),
+                radial-gradient(1200px 800px at 80% 20%, #1e1b4b 0%, transparent 60%),
+                linear-gradient(135deg, var(--slate-900), #4c1d95, var(--slate-900));
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--purple-400), var(--pink-400));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links button {
+            background: transparent;
+            border: none;
+            color: var(--gray-300);
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: capitalize;
+            transition: color .2s ease;
+            padding: 6px 2px;
+        }
+
+        .nav-links button:hover {
+            color: var(--white);
+        }
+
+        .nav-links button.active {
+            color: var(--purple-400);
+        }
+
+        section {
+            padding: 0 24px;
+            scroll-margin-top: 90px;
+        }
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #home.visible {
+            opacity: 1;
+        }
+
+        .hero-wrap {
+            max-width: 900px;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            color: var(--purple-400);
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 0.7;
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(44px, 7vw, 72px);
+            font-weight: 900;
+            margin: 0 0 12px;
+            background: linear-gradient(90deg, var(--purple-400), var(--pink-400), var(--purple-400));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-sub {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--gray-300);
+            margin-bottom: 14px;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--gray-400);
+            max-width: 720px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: all .2s ease;
+            transform: translateZ(0);
+            min-width: 140px;
+        }
+
+        .btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-purple {
+            background: var(--purple-600);
+        }
+
+        .btn-purple:hover {
+            background: #7e22ce;
+        }
+
+        .btn-blue {
+            background: var(--blue-600);
+        }
+
+        .btn-blue:hover {
+            background: var(--blue-700);
+        }
+
+        /* PROJECTS */
+        #projects {
+            min-height: 100vh;
+            padding-top: 96px;
+            padding-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4.5vw, 48px);
+            font-weight: 900;
+            text-align: center;
+            margin: 0 0 10px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--gray-400);
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: var(--glass-card);
+            backdrop-filter: blur(6px);
+            border-radius: 14px;
+            padding: 22px;
+            border: 1px solid var(--border-soft);
+            transition: all .25s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-strong);
+            transform: scale(1.04);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            color: white;
+        }
+
+        .grad-red {
+            background: linear-gradient(90deg, #ef4444, #ec4899);
+        }
+
+        .grad-green {
+            background: linear-gradient(90deg, #22c55e, #10b981);
+        }
+
+        .grad-yellow {
+            background: linear-gradient(90deg, #eab308, #f97316);
+        }
+
+        .grad-blue {
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 10px;
+            transition: color .2s ease;
+        }
+
+        .card:hover h3 {
+            color: var(--purple-400);
+        }
+
+        .card p {
+            color: var(--gray-400);
+            line-height: 1.55;
+            margin: 0 0 14px;
+        }
+
+        .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .pill {
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            color: #d8b4fe;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+        }
+
+        .links {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+        }
+
+        .links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--purple-400);
+            transition: color .2s ease;
+            font-size: 15px;
+        }
+
+        .links a:hover {
+            color: #e9d5ff;
+        }
+
+        .links a.live {
+            color: var(--pink-400);
+        }
+
+        .links a.live:hover {
+            color: #fbcfe8;
+        }
+
+        /* CONTACT */
+        #contact {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 60px;
+        }
+
+        .contact-wrap {
+            max-width: 720px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .contact-desc {
+            color: var(--gray-400);
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-slate {
+            background: var(--slate-800);
+        }
+
+        .btn-slate:hover {
+            background: #334155;
+        }
+
+        .location {
+            margin-top: 26px;
+            color: var(--gray-500);
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-soft);
+            padding: 18px;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <div class="logo">AJ</div>
+            <div class="nav-links">
+                <button data-section="home" class="active">home</button>
+                <button data-section="projects">projects</button>
+                <button data-section="contact">contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-wrap">
+            <div class="hero-icon">
+                <i data-lucide="code-2" style="width:100%; height:100%;"></i>
+            </div>
+
+            <h1 class="hero-title">Aviral Jain</h1>
+            <div class="hero-sub">Developer &amp; Creative Problem Solver</div>
+
+            <p class="hero-desc">
+                Building interactive web applications and automation solutions from Singapore.
+                Passionate about creating tools that make digital experiences more engaging and efficient.
+            </p>
+
+            <div class="hero-buttons">
+                <a class="btn btn-purple" href="https://github.com/lxriva" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="github"></i>
+                    GitHub
+                </a>
+                <a class="btn btn-blue" href="https://www.linkedin.com/in/aviraljain1105/" target="_blank"
+                    rel="noopener noreferrer">
+                    <i data-lucide="linkedin"></i>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-sub">A collection of my recent work and experiments</p>
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="card-icon grad-red"><i data-lucide="message-square"></i></div>
+                <h3>Persona 5 Royal Fusion Chatbot</h3>
+                <p>An interactive chatbot designed to simplify the persona fusion process in Persona 5 Royal, helping
+                    players create powerful personas efficiently.</p>
+                <div class="tech">
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">Chatbot API</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/lxriva/Persona-5-Royal-Fusion-Chatbot" target="_blank">View Code <i
+                            data-lucide="github" style="width:16px;height:16px;"></i></a>
+                    <a class="live" href="https://lxriva.github.io/Persona-5-Royal-Fusion-Chatbot" target="_blank">Live
+                        Demo <i data-lucide="external-link" style="width:16px;height:16px;"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon grad-green"><i data-lucide="message-square"></i></div>
+                <h3>ThePlace SG WhatsApp Bot</h3>
+                <p>A WhatsApp automation bot that facilitates bookings and sends confirmation messages for ThePlace SG,
+                    streamlining customer communication.</p>
+                <div class="tech">
+                    <span class="pill">HTML</span>
+                    <span class="pill">WhatsApp API</span>
+                    <span class="pill">Node.js</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/lxriva/Avi-WebDev-2-WhatsApp-Bot-ThePlace-SG" target="_blank">View Code
+                        <i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon grad-yellow"><i data-lucide="sparkles"></i></div>
+                <h3>Shiny Hunting Tracker</h3>
+                <p>A comprehensive tracking application for Pokémon shiny hunters to log encounters, track odds, and
+                    manage their shiny collection.</p>
+                <div class="tech">
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">Local Storage</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/lxriva/Avi-WebDev-3-ShinyHunting-Tracker" target="_blank">View Code <i
+                            data-lucide="github" style="width:16px;height:16px;"></i></a>
+                    <a class="live" href="https://lxriva.github.io/Avi-WebDev-3-ShinyHunting-Tracker"
+                        target="_blank">Live Demo <i data-lucide="external-link"
+                            style="width:16px;height:16px;"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon grad-blue"><i data-lucide="book-open"></i></div>
+                <h3>Comics Bookshelf</h3>
+                <p>An elegant HTML-based bookshelf interface for managing your comic book collection, tracking reading
+                    progress, and organizing your wishlist.</p>
+                <div class="tech">
+                    <span class="pill">HTML</span>
+                    <span class="pill">CSS</span>
+                    <span class="pill">JavaScript</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/lxriva/Avi-WebDev4-Comics-Bookshelf" target="_blank">View Code <i
+                            data-lucide="github" style="width:16px;height:16px;"></i></a>
+                    <a class="live" href="https://lxriva.github.io/Avi-WebDev4-Comics-Bookshelf" target="_blank">Live
+                        Demo <i data-lucide="external-link" style="width:16px;height:16px;"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-wrap">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-desc">
+                I'm always interested in hearing about new projects and opportunities.
+                Feel free to reach out through any of these platforms!
+            </p>
+
+            <div class="contact-buttons">
+                <a class="btn btn-slate" href="https://github.com/lxriva" target="_blank">
+                    <i data-lucide="github"></i> GitHub
+                </a>
+                <a class="btn btn-blue" href="https://www.linkedin.com/in/aviraljain1105/" target="_blank">
+                    <i data-lucide="linkedin"></i> LinkedIn
+                </a>
+            </div>
+
+            <div class="location">📍 Based in Singapore</div>
+        </div>
+    </section>
+
+    <footer>© 2024 Aviral Jain. Built with React &amp; Tailwind CSS.</footer>
+
+    <script>
+        // Make icons + hero appear reliably
+        window.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            document.getElementById("home").classList.add("visible");
+        });
+
+        const buttons = document.querySelectorAll(".nav-links button");
+        const sectionIds = ["home", "projects", "contact"];
+
+        function setActive(id) {
+            buttons.forEach(b => b.classList.toggle("active", b.dataset.section === id));
+        }
+
+        // Click-to-scroll nav
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.section;
+                document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+                setActive(id);
+            });
+        });
+
+        // Auto-highlight active section while scrolling
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) setActive(entry.target.id);
+            });
+        }, { threshold: 0.6 });
+
+        sectionIds.forEach(id => observer.observe(document.getElementById(id)));
+    </script>
+
+</body>
+
+</html>
